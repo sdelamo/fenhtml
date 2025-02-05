@@ -43,6 +43,9 @@ public class FenhtmlCommand implements Runnable {
     public void run() {
 
         String id = sanitizeForHtmlId(fen);
+
+        String analysis  = UriBuilder.of(LICHESS_ORG).path("analysis").path("standard").build().toString()
+                + "/" + fen.replace(" ", "_");
         URI uri = UriBuilder.of(LICHESS_ORG).queryParam("fen", fen).fragment("friend").build();
         String friend = uri.toString();
         uri = UriBuilder.of(LICHESS_ORG).queryParam("fen", fen).fragment("ai").build();
@@ -52,6 +55,7 @@ public class FenhtmlCommand implements Runnable {
                 "friend", friend,
                 "ai", ai,
                 "id", id,
+                "analysis", analysis,
                 "title", title,
                 "description", description);
         Writable writable = viewsRenderer.render("index.html", model, null);

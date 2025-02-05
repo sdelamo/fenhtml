@@ -1,18 +1,14 @@
 <th:block xmlns:th="http://www.thymeleaf.org">
-    <script type="module">
-        import { Chessground } from './dist/chessground.js';
-
         Chessground(document.getElementById('[[${id}]]'), {
             fen: '[[${fen}]]',
         });
-    </script>
-    <div>
-        <h3 th:text="${title}"></h3>
+    <div class="col-md-4 mb-4">
+    <h3 th:text="${title}"></h3>
         <p th:text="${description}"></p>
         <div class="chessground" th:id="${id}"></div>
-        <a th:href="${friend}">Jugar contra un amigo</a>
-        <a th:href="${ai}">Jugar contra el ordenador</a>
+        Jugar contra <a th:href="${friend}">un amigo</a>
+            <a th:href="${ai}">el ordenador</a>
+        <a th:href="${analysis}">análisis</a>
     </div>
-
 </th:block>
 
